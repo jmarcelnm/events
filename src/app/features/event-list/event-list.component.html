@@ -14,7 +14,7 @@
       {{ event.startDate | date:'longDate' }} - {{ event.endDate | date:'longDate' }}
     </p>
     <p class="event-description">{{ event.description }}</p>
-    <button mat-button color="primary" [routerLink]="['/event', event.id]">
+    <button mat-button [routerLink]="['/event', event.id]">
       View Details
     </button>
   </mat-card>

@@ -1,6 +1,9 @@
 <div class="cart-footer" [class.expanded]="isExpanded">
     <div class="cart-header" (click)="toggleCart()">
-        <span>Shopping Cart ({{ totalItems }} items)</span>
+        <div>
+            <mat-icon>shopping_cart</mat-icon>
+            <span>{{ totalItems }}</span>
+        </div>
         <mat-icon>{{ isExpanded ? 'expand_more' : 'expand_less' }}</mat-icon>
     </div>
     <div class="cart-content" *ngIf="isExpanded">
@@ -10,7 +13,7 @@
                 <div *ngFor="let session of cart[eventId]" class="cart-item">
                     <span class="session-date">{{ session.sessionId | date:'longDate' }}</span>
                     <span class="session-selected">Seats: {{ session.quantity }}</span>
-                    <button mat-icon-button color="warn" (click)="removeFromCart(+eventId, session.sessionId)">
+                    <button mat-icon-button (click)="removeFromCart(+eventId, session.sessionId)">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </div>

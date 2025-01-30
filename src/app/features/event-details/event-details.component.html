@@ -11,11 +11,11 @@
                 <span class="session-selected">Selected: {{ selectedSeats[session.date] || 0 }}</span>
 
                 <div class="session-controls">
-                    <button mat-button color="primary" (click)="addToCart(session.date)"
+                    <button mat-button (click)="addToCart(session.date)"
                         [disabled]="isMaxSelected(session)">
                         +
                     </button>
-                    <button mat-button color="warn" (click)="removeFromCart(session.date)"
+                    <button mat-button (click)="removeFromCart(session.date)"
                         [disabled]="isMinSelected(session)">
                         -
                     </button>
@@ -30,4 +30,4 @@
 <ng-template #notFound>
     <p>EVENT INFO NOT FOUND</p>
 </ng-template>
-<button mat-button color="accent" routerLink="/events">← Back to Events</button>
+<button mat-button routerLink="/events">← Back to Events</button>

@@ -1,16 +1,61 @@
 body {
-    margin-top: 50px;
-    margin-bottom: 50px;
+    font-family: Roboto, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+    padding: 0;
+    margin-top: 55px;
+    margin-bottom: 55px;
 }
 
-.main-content {
-    padding-top: 50px;
-    padding-bottom: 50px;
+button {
+    background-color: transparent !important;
+    color: var(--button-bg-color) !important;
+    border: 1px solid var(--button-bg-color) !important;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    position: relative;
+    z-index: auto;
 }
 
-button,
+button:hover {
+    background-color: var(--button-bg-color) !important;
+    color: var(--button-text-color) !important;
+    border: none !important;
+}
+
 mat-button,
 mat-icon-button {
     position: relative;
     z-index: auto;
+}
+
+mat-icon {
+    margin: 0 !important;
+}
+
+.main-content {
+    padding-top: 55px;
+    padding-bottom: 55px;
+}
+
+:root {
+    --default-color: #810081;
+    --default-text-color: #e5e5e5;
+    --background-color: #e5e5e5;
+    --text-color: #161215;
+    --button-bg-color: #810081;
+    --button-hover-bg-color: #910091;
+    --button-text-color: #e5e5e5;
+}
+
+.dark-mode {
+    --default-color: #910091;
+    --default-text-color: #e5e5e5;
+    --background-color: #161215;
+    --text-color: #e5e5e5;
+    --button-bg-color: #910091;
+    --button-hover-bg-color: #810081;
+    --button-text-color: #e5e5e5;
 }

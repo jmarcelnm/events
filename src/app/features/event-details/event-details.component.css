@@ -1,3 +1,11 @@
+.event-details-card {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border: 1px solid var(--default-color);
+    padding: 16px;
+    margin: 16px;
+}
+
 .sessions-grid {
     display: grid;
     gap: 16px;
@@ -9,22 +17,14 @@
     flex-direction: column;
     align-items: center;
     padding: 12px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--default-color);
     border-radius: 8px;
     text-align: center;
 }
 
 .session-date {
+    color: var(--text-color);
     font-weight: bold;
-    color: #333;
-}
-
-.session-availability {
-    color: green;
-}
-
-.session-selected {
-    color: #007bff;
 }
 
 .session-controls {

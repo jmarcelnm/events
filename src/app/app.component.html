@@ -1,6 +1,11 @@
-<header class="header-placeholder">
-    <span>Events</span>
-</header>
+<mat-toolbar class="header-placeholder">
+    <a href="https://angular.io" target="_blank">
+        <img src="assets/images/angular.png" alt="Angular" />
+    </a>
+    <button mat-button (click)="toggleDarkMode()">
+        <mat-icon>{{ isDarkMode ? 'dark_mode' : 'light_mode' }}</mat-icon>
+    </button>
+</mat-toolbar>
 
 <router-outlet></router-outlet>
 <app-shopping-cart></app-shopping-cart>
