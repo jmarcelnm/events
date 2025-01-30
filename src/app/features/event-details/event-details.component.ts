@@ -24,32 +24,50 @@ export class EventDetailsComponent implements OnInit {
   ) { }
 
   get sortedSessions(): Session[] {
-    return this.eventInfo?.sessions.sort((a, b) => Number(a.date) - Number(b.date)) || [];
+    return this.eventInfo?.sessions.slice().sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()) || [];
   }
 
   ngOnInit() {
-    const eventId = this.route.snapshot.paramMap.get('id');
+    const eventId: string | null = this.route.snapshot.paramMap.get('id');
 
     if (eventId) {
       this.eventService.getEventInfo(eventId)
         .subscribe((data) => {
           this.eventInfo = data;
         });
+
+      this.shoppingCartService.cart$
+        .subscribe((cart: { [key: string]: { sessionId: number; quantity: number }[] }) => {
+          this.selectedSeats = cart[eventId]
+            ? cart[eventId]
+              .reduce((
+                acc: { [sessionId: number]: number },
+                session: { sessionId: number; quantity: number }
+              ) => {
+                acc[session.sessionId] = session.quantity;
+                return acc;
+              }, {})
+            : {};
+        });
     }
   }
 
   addToCart(sessionId: number) {
-    if (this.eventInfo && !this.isMaxSelected({ date: sessionId, availability: this.getSessionAvailability(sessionId) })) {
+    if (this.eventInfo && this.getAvailableSeats(sessionId) > 0) {
       this.shoppingCartService.addToCart(Number(this.eventInfo.event.id), sessionId);
-      this.selectedSeats[sessionId] = (this.selectedSeats[sessionId] || 0) + 1;
     }
   }
 
   removeFromCart(sessionId: number) {
-    if (this.eventInfo && !this.isMinSelected({ date: sessionId, availability: this.getSessionAvailability(sessionId) })) {
+    if (this.eventInfo && (this.selectedSeats[sessionId] || 0) > 0) {
       this.shoppingCartService.removeFromCart(Number(this.eventInfo.event.id), sessionId);
-      this.selectedSeats[sessionId] = Math.max((this.selectedSeats[sessionId] || 0) - 1, 0);
     }
+  }
+
+  getAvailableSeats(sessionId: number): number {
+    const originalAvailability = this.eventInfo?.sessions.find(session => session.date === sessionId)?.availability || 0;
+    const selectedSeats = this.selectedSeats[sessionId] || 0;
+    return originalAvailability - selectedSeats;
   }
 
   getSessionAvailability(sessionId: number): number {
@@ -57,7 +75,7 @@ export class EventDetailsComponent implements OnInit {
   }
 
   isMaxSelected(session: Session): boolean {
-    return (this.selectedSeats[session.date] || 0) >= session.availability;
+    return (this.selectedSeats[session.date] || 0) >= this.getAvailableSeats(session.date);
   }
 
   isMinSelected(session: Session): boolean {
