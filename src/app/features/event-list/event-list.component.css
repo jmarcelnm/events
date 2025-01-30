@@ -1,0 +1,41 @@
+.event-grid {
+  display: grid;
+  gap: 16px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.event-card {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.event-card img {
+  max-width: 100%;
+  height: auto;
+}
+
+.event-place,
+.event-date {
+  font-size: 14px;
+  color: #666;
+}
+
+.event-description {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .event-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .event-description {
+    display: block;
+  }
+}
