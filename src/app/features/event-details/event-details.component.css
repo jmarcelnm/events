@@ -2,8 +2,8 @@
     background-color: var(--background-color);
     color: var(--text-color);
     border: 1px solid var(--default-color);
-    padding: 16px;
-    margin: 16px;
+    padding: 8px;
+    margin: 8px;
 }
 
 .sessions-grid {
@@ -61,6 +61,10 @@ mat-card-subtitle {
 }
 
 @media (min-width: 768px) {
+    .event-details-card {
+        margin: 16px;
+    }
+
     .sessions-grid {
         grid-template-columns: repeat(2, 1fr);
     }
