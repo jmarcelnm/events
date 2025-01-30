@@ -1,0 +1,23 @@
+<div class="cart-footer" [class.expanded]="isExpanded">
+    <div class="cart-header" (click)="toggleCart()">
+        <span>Shopping Cart ({{ totalItems }} items)</span>
+        <mat-icon>{{ isExpanded ? 'expand_more' : 'expand_less' }}</mat-icon>
+    </div>
+    <div class="cart-content" *ngIf="isExpanded">
+        <div *ngIf="cartKeys.length > 0; else emptyCart">
+            <div *ngFor="let eventId of cartKeys">
+                <h3>{{ getEventTitle(+eventId) }}</h3>
+                <div *ngFor="let session of cart[eventId]" class="cart-item">
+                    <span class="session-date">{{ session.sessionId | date:'longDate' }}</span>
+                    <span class="session-selected">Seats: {{ session.quantity }}</span>
+                    <button mat-icon-button color="warn" (click)="removeFromCart(+eventId, session.sessionId)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <ng-template #emptyCart>
+            <p>Your cart is empty.</p>
+        </ng-template>
+    </div>
+</div>
