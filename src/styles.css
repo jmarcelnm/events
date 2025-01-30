@@ -35,6 +35,11 @@ mat-icon {
     margin: 0 !important;
 }
 
+a {
+    color: var(--default-color);
+    text-decoration: none;
+}
+
 .main-content {
     padding-top: 55px;
     padding-bottom: 55px;

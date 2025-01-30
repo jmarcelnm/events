@@ -27,4 +27,8 @@ export class EventListComponent implements OnInit {
   navigateToEvent(eventId: string) {
     this.router.navigate(['/event', eventId]);
   }
+
+  truncateDescription(description: string, maxLength: number): string {
+    return description.length > maxLength ? description.substring(0, maxLength) + '...' : description;
+  }
 }

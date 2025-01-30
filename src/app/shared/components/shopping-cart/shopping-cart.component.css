@@ -48,4 +48,5 @@
 
 mat-icon {
     cursor: pointer;
+    color: var(--default-text-color) !important;
 }

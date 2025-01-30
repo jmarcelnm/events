@@ -1,10 +1,10 @@
 <ng-container *ngIf="eventInfo; else notFound">
     <mat-card class="event-details-card">
         <img mat-card-image [src]="eventInfo.event.image" alt="{{ eventInfo.event.title }}">
-        <mat-card-title>{{ eventInfo.event.title }}</mat-card-title>
-        <mat-card-subtitle>{{ eventInfo.event.subtitle }}</mat-card-subtitle>
-        <h3>Available Sessions</h3>
-
+        <div class="event-details-title">
+            <mat-card-title>{{ eventInfo.event.title }}</mat-card-title>
+            <mat-card-subtitle>{{ eventInfo.event.subtitle }}</mat-card-subtitle>
+        </div>
         <div *ngIf="sortedSessions.length > 0; else noSessions" class="sessions-grid">
             <div *ngFor="let session of sortedSessions" class="session-item">
                 <span class="session-date">{{ session.date | date:'longDate' }}</span>
@@ -27,6 +27,10 @@
     </mat-card>
 </ng-container>
 <ng-template #notFound>
-    <p>EVENT INFO NOT FOUND</p>
+    <div class="not-found">
+        <h1>Event not found</h1>
+    </div>
 </ng-template>
-<button mat-button routerLink="/events">← Back to Events</button>
+<div class="back-button">
+    <button mat-button routerLink="/events">Back to Events</button>
+</div>

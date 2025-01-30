@@ -33,6 +33,33 @@
     margin-top: 8px;
 }
 
+.not-found {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    color: var(--default-color);
+    font-weight: bold;
+}
+
+.back-button {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.event-details-title {
+    display: table-column;
+    justify-content: center;
+    text-align: center;
+    margin: 32px 0;
+}
+
+mat-card-title,
+mat-card-subtitle {
+    color: var(--default-color);
+    font-weight: bold;
+}
+
 @media (min-width: 768px) {
     .sessions-grid {
         grid-template-columns: repeat(2, 1fr);
