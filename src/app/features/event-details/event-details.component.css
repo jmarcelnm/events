@@ -1,0 +1,40 @@
+.sessions-grid {
+    display: grid;
+    gap: 16px;
+    width: 100%;
+}
+
+.session-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.session-date {
+    font-weight: bold;
+    color: #333;
+}
+
+.session-availability {
+    color: green;
+}
+
+.session-selected {
+    color: #007bff;
+}
+
+.session-controls {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+@media (min-width: 768px) {
+    .sessions-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
