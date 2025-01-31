@@ -35,13 +35,14 @@ export class ShoppingCartComponent implements OnInit {
         this.cart = cartData;
       });
 
-    this.eventService.getEvents().subscribe((events) => {
-      this.eventTitles = events
-        .reduce((acc, event) => {
-          acc[event.id.toString()] = event.title;
-          return acc;
-        }, {} as { [eventId: string]: string });
-    });
+    this.eventService.getEvents()
+      .subscribe((events) => {
+        this.eventTitles = events
+          .reduce((acc, event) => {
+            acc[event.id.toString()] = event.title;
+            return acc;
+          }, {} as { [eventId: string]: string });
+      });
   }
 
   getEventTitle(eventId: number): string {

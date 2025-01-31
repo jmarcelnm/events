@@ -21,6 +21,7 @@ import { ShoppingCartComponent } from './shared/components/shopping-cart/shoppin
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  title = 'events';
   isDarkMode = false;
 
   constructor() {
