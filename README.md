@@ -14,3 +14,4 @@ This project is a simple web client for managing event reservations, allowing us
 - [**Angular**](https://angular.dev/)
 - [**Angular Material**](https://material.angular.io/)
 - [**Conventional Commits**](https://www.conventionalcommits.org/)
+- [**Jasmine**](https://jasmine.github.io/)
