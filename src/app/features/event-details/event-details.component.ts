@@ -65,7 +65,7 @@ export class EventDetailsComponent implements OnInit {
   }
 
   getAvailableSeats(sessionId: number): number {
-    const originalAvailability = this.eventInfo?.sessions.find(session => session.date === sessionId)?.availability || 0;
+    const originalAvailability = this.getSessionAvailability(sessionId);
     const selectedSeats = this.selectedSeats[sessionId] || 0;
     return originalAvailability - selectedSeats;
   }
