@@ -2,9 +2,10 @@
     "68": {
         "event": {
             "id": "68",
-            "title": "JOAN MANUEL SERRAT",
-            "subtitle": "Antología desordenada",
-            "image": "/assets/images/sample-image.jpg"
+            "title": "Music Concert",
+            "subtitle": "Jazz and blues",
+            "image": "/assets/images/music.jpg",
+            "description": "The concert will feature a selection of <strong>jazz and blues</strong> music. Tickets are available from the concert hall box office."
         },
         "sessions": [
             {
@@ -28,9 +29,10 @@
     "184": {
         "event": {
             "id": "184",
-            "title": "PABLO ALBORÁN",
-            "subtitle": "Terral (2014)",
-            "image": "/assets/images/sample-image.jpg"
+            "title": "Art Gallery",
+            "subtitle": "Exhibition of paintings",
+            "image": "/assets/images/art.jpg",
+            "description": "The exhibition will feature a selection of paintings by local artists. The gallery is open from <strong>10am to 6pm, Monday to Friday</strong>."
         },
         "sessions": [
             {
