@@ -1,15 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { EventService, EventInfo, Session } from '../../core/services/event/event.service';
 import { ShoppingCartService } from '../../core/services/shopping-cart/shopping-cart.service';
 
 @Component({
   selector: 'app-event-details',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatCardModule, RouterModule],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatCardModule,
+    MatDialogModule,
+    MatIconModule,
+    RouterModule
+  ],
   templateUrl: './event-details.component.html',
   styleUrls: ['./event-details.component.css']
 })
@@ -18,9 +27,10 @@ export class EventDetailsComponent implements OnInit {
   selectedSeats: { [sessionId: number]: number } = {};
 
   constructor(
-    private route: ActivatedRoute,
     private eventService: EventService,
-    private shoppingCartService: ShoppingCartService
+    private shoppingCartService: ShoppingCartService,
+    public dialogRef: MatDialogRef<EventDetailsComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: { eventId: string }
   ) { }
 
   get sortedSessions(): Session[] {
@@ -28,7 +38,7 @@ export class EventDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    const eventId: string | null = this.route.snapshot.paramMap.get('id');
+    const eventId = this.data.eventId;
 
     if (eventId) {
       this.eventService.getEventInfo(eventId)
@@ -80,5 +90,9 @@ export class EventDetailsComponent implements OnInit {
 
   isMinSelected(session: Session): boolean {
     return (this.selectedSeats[session.date] || 0) <= 0;
+  }
+
+  closeDialog(): void {
+    this.dialogRef.close();
   }
 }

@@ -1,20 +1,20 @@
 <div class="event-grid">
   <mat-card *ngFor="let event of events" class="event-card">
-    <a [routerLink]="['/event', event.id]">
+    <a (click)="openEventDetails(event.id)">
       <img mat-card-image [src]="event.image" alt="{{ event.title }}">
     </a>
     <mat-card-title>
-      <a [routerLink]="['/event', event.id]">{{ event.title }}</a>
+      <a (click)="openEventDetails(event.id)">{{ event.title }}</a>
     </mat-card-title>
     <mat-card-subtitle>
-      <a [routerLink]="['/event', event.id]">{{ event.subtitle }}</a>
+      <a (click)="openEventDetails(event.id)">{{ event.subtitle }}</a>
     </mat-card-subtitle>
     <p class="event-place">{{ event.place }}</p>
     <p class="event-date">
       {{ event.startDate | date:'longDate' }} - {{ event.endDate | date:'longDate' }}
     </p>
     <p class="event-description">{{ truncateDescription(event.description, 100) }}</p>
-    <button mat-button [routerLink]="['/event', event.id]">
+    <button mat-button (click)="openEventDetails(event.id)">
       View Details
     </button>
   </mat-card>

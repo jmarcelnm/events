@@ -64,3 +64,20 @@ a {
     --button-hover-bg-color: #810081;
     --button-text-color: #e5e5e5;
 }
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #910091;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #810081;
+}

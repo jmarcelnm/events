@@ -1,9 +1,12 @@
 .event-details-card {
     background-color: var(--background-color);
     color: var(--text-color);
-    border: 1px solid var(--default-color);
+    border: none;
+    box-shadow: none;
     padding: 8px;
     margin: 8px;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 .sessions-grid {
@@ -45,6 +48,7 @@
     display: flex;
     justify-content: center;
     text-align: center;
+    margin-bottom: 16px;
 }
 
 .event-details-title {
@@ -54,17 +58,27 @@
     margin: 32px 0;
 }
 
+.event-details-title p {
+    margin-bottom: 0;
+}
+
+::ng-deep .mat-mdc-dialog-surface {
+    background-color: var(--background-color);
+    border: 1px solid var(--default-color);
+    border-radius: 8px;
+}
+
 mat-card-title,
 mat-card-subtitle {
     color: var(--default-color);
     font-weight: bold;
 }
 
-@media (min-width: 768px) {
-    .event-details-card {
-        margin: 16px;
-    }
+mat-card-image {
+    border-radius: inherit;
+}
 
+@media (min-width: 768px) {
     .sessions-grid {
         grid-template-columns: repeat(2, 1fr);
     }

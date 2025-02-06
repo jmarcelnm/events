@@ -6,7 +6,7 @@
             <mat-card-subtitle>{{ eventInfo.event.subtitle }}</mat-card-subtitle>
             <p [innerHTML]="eventInfo.event.description"></p>
         </div>
-        <div *ngIf="sortedSessions.length > 0; else noSessions" class="sessions-grid">
+        <div class="sessions-grid">
             <div *ngFor="let session of sortedSessions" class="session-item">
                 <span class="session-date">{{ session.date | date:'longDate' }}</span>
                 <span class="session-availability">Available: {{ getAvailableSeats(session.date) }}</span>
@@ -14,10 +14,12 @@
 
                 <div class="session-controls">
                     <button mat-button color="primary" (click)="addToCart(session.date)"
-                        [disabled]="getAvailableSeats(session.date) <= 0">+
+                        [disabled]="getAvailableSeats(session.date) <= 0">
+                        +
                     </button>
                     <button mat-button color="warn" (click)="removeFromCart(session.date)"
-                        [disabled]="(selectedSeats[session.date] || 0) <= 0">-
+                        [disabled]="(selectedSeats[session.date] || 0) <= 0">
+                        -
                     </button>
                 </div>
             </div>
@@ -33,5 +35,7 @@
     </div>
 </ng-template>
 <div class="back-button">
-    <button mat-button routerLink="/events">Back to Events</button>
+    <button mat-button (click)="closeDialog()">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
 </div>
