@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -15,6 +16,7 @@ import { EventDetailsComponent } from '../event-details/event-details.component'
   styleUrls: ['./event-list.component.css']
 })
 export class EventListComponent implements OnInit {
+  destroyRef = inject(DestroyRef);
   events: Event[] = [];
 
   constructor(
@@ -25,6 +27,7 @@ export class EventListComponent implements OnInit {
 
   ngOnInit() {
     this.eventService.getEvents()
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((data) => {
         this.events = data.sort((a, b) => a.endDate - b.endDate);
       });
@@ -40,7 +43,7 @@ export class EventListComponent implements OnInit {
 
     dialogConfig.maxHeight = '90vh';
     dialogConfig.width = '600px';
-    
+
     this.dialog.open(EventDetailsComponent, dialogConfig);
   }
 

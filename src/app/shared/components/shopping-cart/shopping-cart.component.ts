@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,6 +14,7 @@ import { ShoppingCartService } from '../../../core/services/shopping-cart/shoppi
   styleUrls: ['./shopping-cart.component.css']
 })
 export class ShoppingCartComponent implements OnInit {
+  destroyRef = inject(DestroyRef);
   cart: { [eventId: number]: { sessionId: number; quantity: number }[] } = {};
   eventTitles: { [eventId: string]: string } = {};
   isExpanded = false;
@@ -31,11 +33,13 @@ export class ShoppingCartComponent implements OnInit {
 
   ngOnInit() {
     this.shoppingCartService.cart$
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((cartData) => {
         this.cart = cartData;
       });
 
     this.eventService.getEvents()
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((events) => {
         this.eventTitles = events
           .reduce((acc, event) => {

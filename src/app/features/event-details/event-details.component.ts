@@ -1,4 +1,5 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, DestroyRef, inject, Inject, OnInit } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
@@ -23,6 +24,7 @@ import { ShoppingCartService } from '../../core/services/shopping-cart/shopping-
   styleUrls: ['./event-details.component.css']
 })
 export class EventDetailsComponent implements OnInit {
+  destroyRef = inject(DestroyRef);
   eventInfo: EventInfo | null = null;
   selectedSeats: { [sessionId: number]: number } = {};
 
@@ -42,11 +44,13 @@ export class EventDetailsComponent implements OnInit {
 
     if (eventId) {
       this.eventService.getEventInfo(eventId)
+        .pipe(takeUntilDestroyed(this.destroyRef))
         .subscribe((data) => {
           this.eventInfo = data;
         });
 
       this.shoppingCartService.cart$
+        .pipe(takeUntilDestroyed(this.destroyRef))
         .subscribe((cart: { [key: string]: { sessionId: number; quantity: number }[] }) => {
           this.selectedSeats = cart[eventId]
             ? cart[eventId]
