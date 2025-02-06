@@ -4,6 +4,7 @@
         <div class="event-details-title">
             <mat-card-title>{{ eventInfo.event.title }}</mat-card-title>
             <mat-card-subtitle>{{ eventInfo.event.subtitle }}</mat-card-subtitle>
+            <p [innerHTML]="eventInfo.event.description"></p>
         </div>
         <div *ngIf="sortedSessions.length > 0; else noSessions" class="sessions-grid">
             <div *ngFor="let session of sortedSessions" class="session-item">
