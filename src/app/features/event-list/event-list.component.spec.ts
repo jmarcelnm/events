@@ -18,23 +18,23 @@ describe('EventListComponent', () => {
     const mockEvents = [
       {
         id: '68',
-        title: 'JOAN MANUEL SERRAT',
-        subtitle: 'Antología desordenada',
-        image: '/assets/images/simple-image.jpg',
-        place: 'Camp de Mart, Tarragona',
+        title: 'Music Concert',
+        subtitle: 'Jazz and blues',
+        image: '/assets/images/music.jpg',
+        place: 'Palau de la Música Catalana, Barcelona',
         startDate: 1443650400000,
         endDate: 1446159600000,
-        description: 'Cinquanta cançons en un disc quàdruple, un llibre amb textos personals i un centenar de fotografies per commemorar mig segle als escenaris.'
+        description: 'The concert will feature a selection of jazz and blues music. Tickets are available from the concert hall box office.'
       },
       {
         id: '175',
-        title: 'KAREN SOUZA',
-        subtitle: 'Essentials',
-        image: '/assets/images/simple-image.jpg',
-        place: 'Luz de Gas, Barcelona',
+        title: 'Theatre Performance',
+        subtitle: 'Drama and comedy',
+        image: '/assets/images/theatre.jpg',
+        place: 'Teatre Lliure, Barcelona',
         startDate: 1442268000000,
         endDate: 1449270000000,
-        description: "While Karen Souza's voice may sound like it was made for jazz, she is in fact a relative newcomer to this genre of music."
+        description: "The performance will feature a selection of drama and comedy plays. Tickets are available from the theatre box office."
       }
     ];
 
@@ -62,15 +62,15 @@ describe('EventListComponent', () => {
 
   it('should fetch and display the events', () => {
     expect(component.events.length).toBe(2);
-    expect(component.events[0].title).toBe('JOAN MANUEL SERRAT');
-    expect(component.events[1].title).toBe('KAREN SOUZA');
+    expect(component.events[0].title).toBe('Music Concert');
+    expect(component.events[1].title).toBe('Theatre Performance');
   });
 
   it('should sort the events by the start date (ASC)', () => {
     component.events = component.events.sort((a, b) => a.startDate - b.startDate);
     
-    expect(component.events[0].title).toBe('KAREN SOUZA');
-    expect(component.events[1].title).toBe('JOAN MANUEL SERRAT');
+    expect(component.events[0].title).toBe('Theatre Performance');
+    expect(component.events[1].title).toBe('Music Concert');
   });
 
   it('should truncate long descriptions', () => {

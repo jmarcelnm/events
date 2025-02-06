@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { EventDetailsComponent } from './event-details.component';
 import { EventService } from '../../core/services/event/event.service';
@@ -28,13 +29,13 @@ describe('EventDetailsComponent', () => {
     const mockEventInfo = {
       event: {
         id: '219',
-        title: 'MANÁ',
-        subtitle: 'Cama incendiada',
-        image: '/assets/images/simple-image.jpg',
-        place: 'Fòrum, Barcelona',
+        title: 'Dance Performance',
+        subtitle: 'Ballet and contemporary dance',
+        image: '/assets/images/dance.jpg',
+        place: 'Teatre Nacional de Catalunya, Barcelona',
         startDate: 1439416800000,
         endDate: 1455836400000,
-        description: 'Sample event description'
+        description: 'The performance will feature a selection of ballet and contemporary dance pieces. Tickets are available from the theatre box office.'
       },
       sessions: [
         {
@@ -67,6 +68,15 @@ describe('EventDetailsComponent', () => {
             }
           }
         },
+        {
+          provide: MatDialogRef,
+          useValue: {}
+        },
+        {
+          provide: MAT_DIALOG_DATA,
+          useValue: { eventId: '1' }
+        },
+        MatDialogModule,
         provideHttpClient()
       ]
     }).compileComponents();

@@ -32,20 +32,20 @@ describe('EventService', () => {
     const mockEvents: Event[] = [
       {
         id: '184',
-        title: 'PABLO ALBORÁN',
-        subtitle: 'Terral (2014)',
-        image: '/assets/images/simple-image.jpg',
-        place: 'Palau Sant Jordi, Barcelona',
+        title: 'Art Gallery',
+        subtitle: 'Exhibition of paintings',
+        image: '/assets/images/art.jpg',
+        place: 'Art Gallery, Barcelona',
         startDate: 1442959200000,
         endDate: 1447196400000,
-        description: 'Pablo Alborán vuelve a los escenarios para presentar Terral (2014), un nuevo trabajo discográfico donde el artista de Málaga mantiene las constantes creativas que le han convertido en favorito del público: delicadeza, romanticismo y preciosismo melódico.'
+        description: 'The exhibition will feature a selection of paintings by local artists. The gallery is open from 10am to 6pm, Monday to Friday.'
       }
     ];
 
     service.getEvents()
       .subscribe((events) => {
         expect(events.length).toBe(1);
-        expect(events[0].title).toBe('PABLO ALBORÁN');
+        expect(events[0].title).toBe('Art Gallery');
         done();
       });
 
@@ -58,13 +58,13 @@ describe('EventService', () => {
     const mockEventInfo: EventInfo = {
       event: {
         id: '219',
-        title: 'MANÁ',
-        subtitle: 'Cama incendiada',
-        image: '/assets/images/simple-image.jpg',
-        place: 'Fòrum, Barcelona',
+        title: 'Dance Performance',
+        subtitle: 'Ballet and contemporary dance',
+        image: '/assets/images/dance.jpg',
+        place: 'Teatre Nacional de Catalunya, Barcelona',
         startDate: 1439416800000,
         endDate: 1455836400000,
-        description: 'Aparentar es una forma de mentir. Confiar sólo en la apariencia nos puede alejar de la esencia. Cama Incendiada, la nueva producción de Maná, no aparenta, es...'
+        description: 'The performance will feature a selection of ballet and contemporary dance pieces. Tickets are available from the theatre box office.'
       },
       sessions: [
         {
